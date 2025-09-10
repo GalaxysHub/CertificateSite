@@ -1,6 +1,9 @@
 # Certificate Testing Platform
 
-A modern, production-ready Next.js 14+ application for creating and managing certification tests with automated certificate generation. Built with TypeScript, Prisma, NextAuth.js, and Tailwind CSS.
+A modern, production-ready Next.js 15+ application for creating and managing certification tests with automated certificate generation. Built with TypeScript, Prisma, NextAuth.js, Supabase, and Tailwind CSS.
+
+✅ **Database configured with Supabase**  
+✅ **Ready for production deployment**
 
 ## Features
 
