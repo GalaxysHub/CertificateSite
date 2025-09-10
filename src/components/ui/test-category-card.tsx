@@ -137,7 +137,7 @@ export function TestCategoryCard({ category, index = 0 }: TestCategoryCardProps)
           </div>
 
           {/* Action Button */}
-          <Button asChild className="w-full group-hover:bg-blue-700 transition-colors">
+          <Button asChild className="w-full group-hover:bg-primary-hover group-hover:shadow-lg group-hover:shadow-primary/20 group-hover:-translate-y-0.5 transition-all duration-200 ease-in-out">
             <Link href={`/tests/category/${category.id}`}>
               Explore Tests
             </Link>
