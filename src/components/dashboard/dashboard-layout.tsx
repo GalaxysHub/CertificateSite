@@ -68,7 +68,7 @@ const quickActions = [
   {
     name: "Take a Test",
     href: "/tests",
-    color: "bg-primary hover:bg-primary-hover hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 transition-all duration-200 ease-in-out"
+    color: "bg-primary hover:ring-2 hover:ring-primary hover:ring-offset-2 transition-all duration-200"
   },
   {
     name: "View Certificates",

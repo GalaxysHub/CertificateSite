@@ -402,7 +402,7 @@ interface TestCardProps {
 
 function TestCard({ test }: TestCardProps) {
   return (
-    <Card className="h-full hover:shadow-lg transition-all duration-300 group">
+    <Card className="h-full">
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between mb-2">
           <Badge 
@@ -469,7 +469,7 @@ function TestCard({ test }: TestCardProps) {
           </div>
         </div>
 
-        <Button className="w-full mt-4 hover:bg-primary-hover hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 transition-all duration-200 ease-in-out" asChild>
+        <Button className="w-full mt-4 hover:ring-2 hover:ring-primary hover:ring-offset-2 transition-all duration-200" asChild>
           <Link href={`/tests/${test.id}`}>
             Start Test
             <ArrowRight className="ml-2 w-4 h-4" />

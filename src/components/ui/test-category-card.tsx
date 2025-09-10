@@ -63,14 +63,13 @@ export function TestCategoryCard({ category, index = 0 }: TestCategoryCardProps)
   
   return (
     <motion.div
-      className="group relative"
+      className="relative"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      whileHover={{ y: -8 }}
     >
-      <div className="relative bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
+      <div className="relative bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
         {/* Featured Badge */}
         {category.featured && (
           <div className="absolute top-3 right-3 z-10">
@@ -90,18 +89,17 @@ export function TestCategoryCard({ category, index = 0 }: TestCategoryCardProps)
           {/* Icon and Title */}
           <div className="flex items-start justify-between mb-4">
             <div className="flex items-center space-x-3">
-              <motion.div
-                className="w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+              <div
+                className="w-12 h-12 rounded-lg flex items-center justify-center"
                 style={{ backgroundColor: `${category.color}20` }}
-                whileHover={{ rotate: 5 }}
               >
                 <IconComponent 
                   className="w-6 h-6"
                   style={{ color: category.color }}
                 />
-              </motion.div>
+              </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-lg font-semibold text-gray-900">
                   {category.name}
                 </h3>
                 <p className="text-sm text-gray-500">{category.testCount} tests available</p>
@@ -137,15 +135,12 @@ export function TestCategoryCard({ category, index = 0 }: TestCategoryCardProps)
           </div>
 
           {/* Action Button */}
-          <Button asChild className="w-full hover:bg-primary-hover hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 transition-all duration-200 ease-in-out">
+          <Button asChild className="w-full hover:ring-2 hover:ring-primary hover:ring-offset-2 transition-all duration-200">
             <Link href={`/tests/category/${category.id}`}>
               Explore Tests
             </Link>
           </Button>
         </div>
-
-        {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-indigo-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       </div>
     </motion.div>
   );
