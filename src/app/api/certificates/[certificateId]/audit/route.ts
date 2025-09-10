@@ -4,15 +4,16 @@ import { authOptions } from '@/lib/auth';
 import { db } from '@/lib/db';
 
 interface RouteParams {
-  params: {
+  params: Promise<{
     certificateId: string;
-  };
+  }>;
 }
 
 export async function GET(
   request: NextRequest,
   { params }: RouteParams
 ) {
+  const { certificateId } = await params;
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user?.id) {
@@ -21,8 +22,6 @@ export async function GET(
         { status: 401 }
       );
     }
-
-    const { certificateId } = params;
 
     // Get certificate first to check permissions
     const certificate = await db.certificate.findUnique({

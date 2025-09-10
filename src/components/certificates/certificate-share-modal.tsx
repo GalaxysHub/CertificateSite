@@ -39,7 +39,7 @@ export default function CertificateShareModal({
   const [emailSent, setEmailSent] = useState(false);
   const [copySuccess, setCopySuccess] = useState<string | null>(null);
 
-  if (!certificate) return null;
+  if (!certificate) {return null;}
 
   const verificationUrl = `${window.location.origin}/verify-certificate?code=${certificate.verificationCode}`;
 
@@ -54,7 +54,7 @@ export default function CertificateShareModal({
   };
 
   const handleEmailShare = async () => {
-    if (!email.trim() || !onEmailShare) return;
+    if (!email.trim() || !onEmailShare) {return;}
 
     setIsEmailSending(true);
     try {

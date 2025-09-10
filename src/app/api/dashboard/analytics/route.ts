@@ -125,7 +125,7 @@ function groupByWeek(attempts: any[]) {
   const weeks = new Map<string, { scores: number[], count: number }>();
   
   attempts.forEach(attempt => {
-    if (!attempt.completedAt) return;
+    if (!attempt.completedAt) {return;}
     
     const date = new Date(attempt.completedAt);
     const weekStart = new Date(date);
@@ -161,7 +161,7 @@ function groupByCategory(attempts: any[]) {
     const category = categories.get(categoryName)!;
     category.scores.push(attempt.score);
     category.count++;
-    if (attempt.passed) category.passed++;
+    if (attempt.passed) {category.passed++;}
   });
   
   return Array.from(categories.entries()).map(([name, data]) => ({

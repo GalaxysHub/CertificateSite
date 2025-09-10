@@ -22,7 +22,7 @@ export function ProtectedRoute({
   const router = useRouter();
 
   useEffect(() => {
-    if (status === "loading") return; // Still loading
+    if (status === "loading") {return;} // Still loading
 
     if (requireAuth && !session) {
       router.push("/auth/signin");

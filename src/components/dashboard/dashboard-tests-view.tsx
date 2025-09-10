@@ -105,7 +105,7 @@ export function DashboardTestsView() {
       });
 
       const response = await fetch(`/api/dashboard/tests?${params}`);
-      if (!response.ok) throw new Error('Failed to fetch tests');
+      if (!response.ok) {throw new Error('Failed to fetch tests');}
       
       const data = await response.json();
       setTestsData(data);
@@ -139,9 +139,9 @@ export function DashboardTestsView() {
   };
 
   const getStatusText = (test: TestData) => {
-    if (test.userProgress.inProgress) return "In Progress";
-    if (test.userProgress.passed) return "Completed";
-    if (test.userProgress.attempts > 0) return "Retry Available";
+    if (test.userProgress.inProgress) {return "In Progress";}
+    if (test.userProgress.passed) {return "Completed";}
+    if (test.userProgress.attempts > 0) {return "Retry Available";}
     return "Start Test";
   };
 

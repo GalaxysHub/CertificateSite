@@ -30,7 +30,7 @@ export function QuestionNavigation({
   };
 
   const getButtonVariant = (index: number) => {
-    if (index === currentQuestionIndex) return 'default';
+    if (index === currentQuestionIndex) {return 'default';}
     
     const status = getQuestionStatus(index);
     switch (status) {

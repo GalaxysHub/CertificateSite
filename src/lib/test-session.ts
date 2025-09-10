@@ -82,7 +82,7 @@ export function updateTestSession(
   answer: string
 ): TestSession | null {
   const session = testSessions.get(sessionId);
-  if (!session) return null;
+  if (!session) {return null;}
 
   // Update answer
   session.answers[questionId] = answer;
@@ -98,7 +98,7 @@ export function updateTestSession(
  */
 export function nextQuestion(sessionId: string): TestSession | null {
   const session = testSessions.get(sessionId);
-  if (!session) return null;
+  if (!session) {return null;}
 
   if (session.currentQuestionIndex < session.questions.length - 1) {
     session.currentQuestionIndex++;
@@ -113,7 +113,7 @@ export function nextQuestion(sessionId: string): TestSession | null {
  */
 export function previousQuestion(sessionId: string): TestSession | null {
   const session = testSessions.get(sessionId);
-  if (!session) return null;
+  if (!session) {return null;}
 
   if (session.currentQuestionIndex > 0) {
     session.currentQuestionIndex--;
@@ -128,7 +128,7 @@ export function previousQuestion(sessionId: string): TestSession | null {
  */
 export function goToQuestion(sessionId: string, questionIndex: number): TestSession | null {
   const session = testSessions.get(sessionId);
-  if (!session) return null;
+  if (!session) {return null;}
 
   if (questionIndex >= 0 && questionIndex < session.questions.length) {
     session.currentQuestionIndex = questionIndex;
@@ -227,7 +227,7 @@ export async function submitTestSession(
  */
 export function getCurrentQuestion(sessionId: string): TestQuestion | null {
   const session = testSessions.get(sessionId);
-  if (!session) return null;
+  if (!session) {return null;}
 
   return session.questions[session.currentQuestionIndex] || null;
 }
@@ -243,7 +243,7 @@ export function getTestProgress(sessionId: string): {
   remainingTime: number;
 } | null {
   const session = testSessions.get(sessionId);
-  if (!session) return null;
+  if (!session) {return null;}
 
   const answeredQuestions = Object.keys(session.answers).length;
   const currentTime = new Date();
@@ -264,7 +264,7 @@ export function getTestProgress(sessionId: string): {
  */
 export function isValidSession(sessionId: string): boolean {
   const session = testSessions.get(sessionId);
-  if (!session) return false;
+  if (!session) {return false;}
 
   const currentTime = new Date();
   const elapsedMinutes = Math.floor((currentTime.getTime() - session.startTime.getTime()) / (1000 * 60));
@@ -285,7 +285,7 @@ export function getSessionAnswers(sessionId: string): Record<string, string> | n
  */
 export async function autoSubmitExpiredSession(sessionId: string, userId: string): Promise<TestResult | null> {
   const session = testSessions.get(sessionId);
-  if (!session) return null;
+  if (!session) {return null;}
 
   if (!isValidSession(sessionId)) {
     return await submitTestSession(sessionId, userId);
@@ -299,7 +299,7 @@ export async function autoSubmitExpiredSession(sessionId: string, userId: string
  */
 export async function pauseTestSession(sessionId: string): Promise<boolean> {
   const session = testSessions.get(sessionId);
-  if (!session) return false;
+  if (!session) {return false;}
 
   // Save current session state to database
   await db.testAttempt.update({
@@ -416,7 +416,7 @@ export function cleanupExpiredSessions(): number {
  */
 export function getSessionDebugInfo(sessionId: string): any {
   const session = testSessions.get(sessionId);
-  if (!session) return null;
+  if (!session) {return null;}
 
   const currentTime = new Date();
   const elapsedMinutes = Math.floor((currentTime.getTime() - session.startTime.getTime()) / (1000 * 60));

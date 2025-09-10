@@ -56,7 +56,7 @@ export function Navigation() {
             <div className="ml-10 flex items-baseline space-x-4">
               {navigation.map((item) => {
                 // Only show protected routes if user is authenticated
-                if (item.protected && !session) return null;
+                if (item.protected && !session) {return null;}
                 
                 const isActive = pathname === item.href;
                 return (
@@ -166,7 +166,7 @@ export function Navigation() {
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
               {navigation.map((item) => {
                 // Only show protected routes if user is authenticated
-                if (item.protected && !session) return null;
+                if (item.protected && !session) {return null;}
                 
                 const isActive = pathname === item.href;
                 return (

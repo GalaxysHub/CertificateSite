@@ -50,7 +50,7 @@ export default function CertificateCard({
   const [copySuccess, setCopySuccess] = useState(false);
 
   const handleDownload = async () => {
-    if (!onDownload) return;
+    if (!onDownload) {return;}
     
     setIsDownloading(true);
     try {

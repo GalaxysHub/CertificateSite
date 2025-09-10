@@ -70,7 +70,7 @@ export function DashboardProfileView() {
   const fetchProfile = async () => {
     try {
       const response = await fetch('/api/user/profile');
-      if (!response.ok) throw new Error('Failed to fetch profile');
+      if (!response.ok) {throw new Error('Failed to fetch profile');}
       
       const data = await response.json();
       setProfile(data.user);
@@ -153,7 +153,7 @@ export function DashboardProfileView() {
         method: 'DELETE'
       });
 
-      if (!response.ok) throw new Error('Failed to delete account');
+      if (!response.ok) {throw new Error('Failed to delete account');}
       
       // Redirect to home page or sign out
       window.location.href = '/';

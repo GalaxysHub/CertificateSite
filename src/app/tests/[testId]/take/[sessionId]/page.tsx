@@ -222,7 +222,7 @@ export default function TestTakePage({ params }: TestTakePageProps) {
 
   // Handle answer selection
   const handleAnswerSelect = (answer: string) => {
-    if (!currentQuestion) return;
+    if (!currentQuestion) {return;}
     
     const updatedAnswers = {
       ...answers,
@@ -242,7 +242,7 @@ export default function TestTakePage({ params }: TestTakePageProps) {
 
   // Handle question flagging
   const handleToggleFlag = () => {
-    if (!testSession) return;
+    if (!testSession) {return;}
     
     const currentIndex = testSession.currentQuestionIndex;
     const newFlagged = new Set(flaggedQuestions);
@@ -322,7 +322,7 @@ export default function TestTakePage({ params }: TestTakePageProps) {
 
   // Initialize session on load
   useEffect(() => {
-    if (status === 'loading') return;
+    if (status === 'loading') {return;}
     
     if (status === 'unauthenticated') {
       router.push('/auth/signin?callbackUrl=' + encodeURIComponent(window.location.pathname));

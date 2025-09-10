@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { CheckCircle, XCircle, Search, AlertTriangle } from 'lucide-react';
 import { CertificateVerificationData } from '@/types';
 
-export default function CertificateVerificationPage() {
+function CertificateVerificationContent() {
   const searchParams = useSearchParams();
   const [verificationCode, setVerificationCode] = useState('');
   const [verificationResult, setVerificationResult] = useState<CertificateVerificationData | null>(null);
@@ -65,7 +65,7 @@ export default function CertificateVerificationPage() {
   };
 
   const getStatusIcon = () => {
-    if (!verificationResult) return null;
+    if (!verificationResult) {return null;}
     
     if (verificationResult.isValid) {
       return <CheckCircle className="w-8 h-8 text-green-500" />;
@@ -75,7 +75,7 @@ export default function CertificateVerificationPage() {
   };
 
   const getStatusColor = () => {
-    if (!verificationResult) return 'default';
+    if (!verificationResult) {return 'default';}
     return verificationResult.isValid ? 'default' : 'destructive';
   };
 
@@ -268,5 +268,26 @@ export default function CertificateVerificationPage() {
         </Card>
       </div>
     </div>
+  );
+}
+
+export default function CertificateVerificationPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+              Certificate Verification
+            </h1>
+            <p className="text-lg text-gray-600">
+              Loading verification interface...
+            </p>
+          </div>
+        </div>
+      </div>
+    }>
+      <CertificateVerificationContent />
+    </Suspense>
   );
 }

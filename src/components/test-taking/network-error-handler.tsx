@@ -55,7 +55,7 @@ export function NetworkErrorHandler({
   }, []);
 
   const handleRetry = async () => {
-    if (!onRetry) return;
+    if (!onRetry) {return;}
     
     try {
       setIsRetrying(true);

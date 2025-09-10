@@ -66,7 +66,7 @@ export default function CertificateGallery({
   }, [targetUserId, currentPage, filterValid]);
 
   const fetchCertificates = async () => {
-    if (!targetUserId) return;
+    if (!targetUserId) {return;}
 
     try {
       setLoading(true);

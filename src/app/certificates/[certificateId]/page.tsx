@@ -131,7 +131,7 @@ export default function CertificateDetailPage() {
   };
 
   const getStatusBadge = () => {
-    if (!certificate) return null;
+    if (!certificate) {return null;}
     
     if (!certificate.isValid) {
       return <Badge variant="destructive">Revoked</Badge>;
@@ -145,7 +145,7 @@ export default function CertificateDetailPage() {
   };
 
   const getTemplateColor = () => {
-    if (!certificate) return 'border-l-gray-500';
+    if (!certificate) {return 'border-l-gray-500';}
     
     switch (certificate.templateType) {
       case 'PROFESSIONAL':

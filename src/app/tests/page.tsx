@@ -139,7 +139,7 @@ export default function TestsPage() {
   const priceRanges = ['All', 'Free', 'Paid'];
 
   const filteredAndSortedTests = useMemo(() => {
-    let filtered = sampleTests.filter(test => {
+    const filtered = sampleTests.filter(test => {
       const matchesSearch = test.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                            test.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
                            test.skills.some(skill => skill.toLowerCase().includes(searchQuery.toLowerCase()));

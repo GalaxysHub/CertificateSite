@@ -410,10 +410,10 @@ export function formatTestResults(result: TestResult): {
   const statusColor = result.passed ? 'text-green-600' : 'text-red-600';
   
   let performanceText = 'Below Average';
-  if (result.percentage >= 90) performanceText = 'Excellent';
-  else if (result.percentage >= 80) performanceText = 'Very Good';
-  else if (result.percentage >= 70) performanceText = 'Good';
-  else if (result.percentage >= 60) performanceText = 'Average';
+  if (result.percentage >= 90) {performanceText = 'Excellent';}
+  else if (result.percentage >= 80) {performanceText = 'Very Good';}
+  else if (result.percentage >= 70) {performanceText = 'Good';}
+  else if (result.percentage >= 60) {performanceText = 'Average';}
   
   return {
     scoreText,

@@ -23,7 +23,7 @@ export function useRealTimeUpdates<T>({
   const mountedRef = useRef(true);
 
   const fetchData = async () => {
-    if (!session || !enabled || !mountedRef.current) return;
+    if (!session || !enabled || !mountedRef.current) {return;}
 
     try {
       const response = await fetch(endpoint);

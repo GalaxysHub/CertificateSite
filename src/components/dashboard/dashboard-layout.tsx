@@ -263,7 +263,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
 function getBreadcrumb(pathname: string): string {
   const segments = pathname.split('/').filter(Boolean);
-  if (segments.length <= 1) return "Dashboard";
+  if (segments.length <= 1) {return "Dashboard";}
   
   const breadcrumbs = segments.map(segment => 
     segment.charAt(0).toUpperCase() + segment.slice(1)

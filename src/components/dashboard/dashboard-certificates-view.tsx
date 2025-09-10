@@ -67,7 +67,7 @@ export function DashboardCertificatesView() {
   const fetchCertificates = async () => {
     try {
       const response = await fetch('/api/certificates/user/me');
-      if (!response.ok) throw new Error('Failed to fetch certificates');
+      if (!response.ok) {throw new Error('Failed to fetch certificates');}
       
       const data = await response.json();
       setCertificates(data.certificates || []);
@@ -81,7 +81,7 @@ export function DashboardCertificatesView() {
   const handleDownload = async (certificateId: string) => {
     try {
       const response = await fetch(`/api/certificates/${certificateId}/download`);
-      if (!response.ok) throw new Error('Download failed');
+      if (!response.ok) {throw new Error('Download failed');}
       
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -136,7 +136,7 @@ export function DashboardCertificatesView() {
   };
 
   const isExpiring = (expiryDate: string | null) => {
-    if (!expiryDate) return false;
+    if (!expiryDate) {return false;}
     const expiry = new Date(expiryDate);
     const now = new Date();
     const thirtyDaysFromNow = new Date(now.getTime() + (30 * 24 * 60 * 60 * 1000));
@@ -144,7 +144,7 @@ export function DashboardCertificatesView() {
   };
 
   const isExpired = (expiryDate: string | null) => {
-    if (!expiryDate) return false;
+    if (!expiryDate) {return false;}
     return new Date(expiryDate) <= new Date();
   };
 

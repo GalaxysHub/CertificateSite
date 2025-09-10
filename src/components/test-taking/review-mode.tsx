@@ -48,9 +48,9 @@ export function ReviewMode({
     const hasAnswer = answers[questionId] && answers[questionId].trim() !== '';
     const isFlagged = flaggedQuestions.has(index);
     
-    if (hasAnswer && isFlagged) return 'answered-flagged';
-    if (hasAnswer) return 'answered';
-    if (isFlagged) return 'flagged';
+    if (hasAnswer && isFlagged) {return 'answered-flagged';}
+    if (hasAnswer) {return 'answered';}
+    if (isFlagged) {return 'flagged';}
     return 'unanswered';
   };
 
@@ -132,7 +132,7 @@ export function ReviewMode({
   const filteredQuestions = getFilteredQuestions();
   const stats = getStatusStats();
 
-  if (!isOpen) return null;
+  if (!isOpen) {return null;}
 
   return (
     <AnimatePresence>

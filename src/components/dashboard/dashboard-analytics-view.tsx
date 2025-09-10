@@ -75,7 +75,7 @@ export function DashboardAnalyticsView() {
   const fetchAnalytics = async () => {
     try {
       const response = await fetch(`/api/dashboard/analytics?range=${timeRange}`);
-      if (!response.ok) throw new Error('Failed to fetch analytics');
+      if (!response.ok) {throw new Error('Failed to fetch analytics');}
       
       const data = await response.json();
       setAnalytics(data);
@@ -87,7 +87,7 @@ export function DashboardAnalyticsView() {
   };
 
   const exportData = () => {
-    if (!analytics) return;
+    if (!analytics) {return;}
     
     const data = JSON.stringify(analytics, null, 2);
     const blob = new Blob([data], { type: 'application/json' });
@@ -102,14 +102,14 @@ export function DashboardAnalyticsView() {
   };
 
   const getTrendIcon = (current: number, previous: number) => {
-    if (current > previous) return <ArrowUp className="h-4 w-4 text-green-600" />;
-    if (current < previous) return <ArrowDown className="h-4 w-4 text-red-600" />;
+    if (current > previous) {return <ArrowUp className="h-4 w-4 text-green-600" />;}
+    if (current < previous) {return <ArrowDown className="h-4 w-4 text-red-600" />;}
     return <Minus className="h-4 w-4 text-gray-400" />;
   };
 
   const getTrendColor = (current: number, previous: number) => {
-    if (current > previous) return "text-green-600";
-    if (current < previous) return "text-red-600";
+    if (current > previous) {return "text-green-600";}
+    if (current < previous) {return "text-red-600";}
     return "text-gray-400";
   };
 

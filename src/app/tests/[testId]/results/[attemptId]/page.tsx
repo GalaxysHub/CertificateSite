@@ -69,7 +69,7 @@ export default function TestResultsPage({
   // Load test results
   useEffect(() => {
     const loadTestResults = async () => {
-      if (status === 'loading') return;
+      if (status === 'loading') {return;}
       
       if (status === 'unauthenticated') {
         router.push('/auth/signin?callbackUrl=' + encodeURIComponent(window.location.pathname));
@@ -120,7 +120,7 @@ export default function TestResultsPage({
   }, [status, params, router, session]);
 
   const handleDownloadCertificate = async () => {
-    if (!testResult?.certificateId) return;
+    if (!testResult?.certificateId) {return;}
     
     setIsDownloadingCertificate(true);
     try {
@@ -139,7 +139,7 @@ export default function TestResultsPage({
   };
 
   const handleShareResult = async () => {
-    if (!testResult) return;
+    if (!testResult) {return;}
     
     try {
       await navigator.share({

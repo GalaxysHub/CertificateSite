@@ -80,9 +80,9 @@ export async function GET(request: NextRequest) {
 
     // Calculate current level based on tests completed
     let currentLevel = "Beginner";
-    if (userAttempts >= 10) currentLevel = "Intermediate";
-    if (userAttempts >= 25) currentLevel = "Advanced";
-    if (userAttempts >= 50) currentLevel = "Expert";
+    if (userAttempts >= 10) {currentLevel = "Intermediate";}
+    if (userAttempts >= 25) {currentLevel = "Advanced";}
+    if (userAttempts >= 50) {currentLevel = "Expert";}
 
     // Calculate study streak (consecutive days with activity)
     const studyStreak = await calculateStudyStreak(userId);
@@ -131,10 +131,10 @@ async function calculateStudyStreak(userId: string): Promise<number> {
       orderBy: { completedAt: 'desc' }
     });
 
-    if (attempts.length === 0) return 0;
+    if (attempts.length === 0) {return 0;}
 
     let streak = 0;
-    let currentDate = new Date();
+    const currentDate = new Date();
     currentDate.setHours(0, 0, 0, 0);
 
     // Group attempts by date

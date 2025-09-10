@@ -24,7 +24,7 @@ export function useKeyboardNavigation({
   enabled = true
 }: KeyboardNavigationOptions) {
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
-    if (!enabled) return;
+    if (!enabled) {return;}
     
     // Ignore if user is typing in an input or textarea
     const activeElement = document.activeElement;

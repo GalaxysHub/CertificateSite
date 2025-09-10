@@ -55,16 +55,16 @@ export function TestTimer({
   };
 
   const getTimerVariant = () => {
-    if (isExpired) return 'destructive';
-    if (remainingTime <= 5) return 'destructive';
-    if (remainingTime <= 15) return 'secondary';
+    if (isExpired) {return 'destructive';}
+    if (remainingTime <= 5) {return 'destructive';}
+    if (remainingTime <= 15) {return 'secondary';}
     return 'default';
   };
 
   const getTimerColor = () => {
-    if (isExpired) return 'text-red-600';
-    if (remainingTime <= 5) return 'text-red-600';
-    if (remainingTime <= 15) return 'text-orange-600';
+    if (isExpired) {return 'text-red-600';}
+    if (remainingTime <= 5) {return 'text-red-600';}
+    if (remainingTime <= 15) {return 'text-orange-600';}
     return 'text-gray-900';
   };
 

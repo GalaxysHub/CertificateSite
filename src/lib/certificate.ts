@@ -53,9 +53,9 @@ export function calculateProficiencyLevel(
   }
 
   // Default scoring system
-  if (score >= 90) return 'Advanced';
-  if (score >= 75) return 'Intermediate';
-  if (score >= 60) return 'Beginner';
+  if (score >= 90) {return 'Advanced';}
+  if (score >= 75) {return 'Intermediate';}
+  if (score >= 60) {return 'Beginner';}
   return 'Foundation';
 }
 
@@ -66,7 +66,7 @@ export function getCertificateTemplate(
   testCategoryType: string,
   customTemplate?: CertificateTemplate
 ): CertificateTemplate {
-  if (customTemplate) return customTemplate;
+  if (customTemplate) {return customTemplate;}
 
   switch (testCategoryType) {
     case 'LANGUAGE':
@@ -122,7 +122,7 @@ export function isValidVerificationCodeFormat(code: string): boolean {
  * Check if certificate has expired
  */
 export function isCertificateExpired(expiryDate: Date | null): boolean {
-  if (!expiryDate) return false;
+  if (!expiryDate) {return false;}
   return new Date() > expiryDate;
 }
 
@@ -181,10 +181,10 @@ export function calculateExpiryDate(
   testType: string,
   customExpiryMonths?: number
 ): Date | null {
-  if (customExpiryMonths === 0) return null; // Never expires
+  if (customExpiryMonths === 0) {return null;} // Never expires
   
   const months = customExpiryMonths || getDefaultExpiryMonths(testType);
-  if (months === 0) return null;
+  if (months === 0) {return null;}
   
   const expiryDate = new Date();
   expiryDate.setMonth(expiryDate.getMonth() + months);
