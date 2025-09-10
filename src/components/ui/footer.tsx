@@ -99,7 +99,7 @@ export function Footer() {
                 />
                 <motion.button
                   type="submit"
-                  className="px-6 py-2 bg-primary hover:ring-2 hover:ring-primary hover:ring-offset-2 rounded-lg font-medium transition-all duration-200"
+                  className="px-6 py-2 bg-primary hover:ring-1 hover:ring-blue-300 hover:ring-offset-1 rounded-lg font-medium transition-all duration-200"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

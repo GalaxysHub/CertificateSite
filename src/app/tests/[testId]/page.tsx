@@ -315,7 +315,7 @@ export default function TestIntroPage({ params }: { params: { testId: string } }
                       <Button
                         onClick={handleStartTest}
                         disabled={isStarting}
-                        className="w-full bg-primary hover:ring-2 hover:ring-primary hover:ring-offset-2 text-white transition-all duration-200"
+                        className="w-full bg-primary hover:ring-1 hover:ring-blue-300 hover:ring-offset-1 text-white transition-all duration-200"
                         size="lg"
                       >
                         {isStarting ? (
