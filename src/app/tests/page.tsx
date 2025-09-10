@@ -469,7 +469,7 @@ function TestCard({ test }: TestCardProps) {
           </div>
         </div>
 
-        <Button className="w-full mt-4 group-hover:bg-primary-hover group-hover:shadow-lg group-hover:shadow-primary/20 group-hover:-translate-y-0.5 transition-all duration-200 ease-in-out" asChild>
+        <Button className="w-full mt-4 hover:bg-primary-hover hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 transition-all duration-200 ease-in-out" asChild>
           <Link href={`/tests/${test.id}`}>
             Start Test
             <ArrowRight className="ml-2 w-4 h-4" />
