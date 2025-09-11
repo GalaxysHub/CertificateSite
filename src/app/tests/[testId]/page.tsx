@@ -333,11 +333,6 @@ export default function TestIntroPage({ params }: { params: { testId: string } }
                         </div>
                       )}
 
-                      {status !== 'authenticated' && (
-                        <div className="text-xs text-gray-500">
-                          You need to sign in to take this test
-                        </div>
-                      )}
                     </div>
                   </CardContent>
                 </Card>

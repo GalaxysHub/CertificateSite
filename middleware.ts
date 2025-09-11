@@ -8,8 +8,6 @@ export default withAuth(
     const isAuthPage = req.nextUrl.pathname.startsWith("/auth");
     const isProtectedRoute =
       req.nextUrl.pathname.startsWith("/dashboard") ||
-      req.nextUrl.pathname.startsWith("/tests") ||
-      req.nextUrl.pathname.startsWith("/certificates") ||
       req.nextUrl.pathname.startsWith("/profile");
 
     // If user is on an auth page and is already authenticated, redirect to dashboard
