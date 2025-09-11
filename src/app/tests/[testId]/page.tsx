@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { 
@@ -64,21 +64,23 @@ const mockTestData = {
   ]
 };
 
-export default function TestIntroPage({ params }: { params: { testId: string } }) {
+export default function TestIntroPage({ params }: { params: Promise<{ testId: string }> }) {
   const router = useRouter();
   const { data: session, status } = useSession();
   const [isLoading, setIsLoading] = useState(false);
   const [isStarting, setIsStarting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const testData = mockTestData; // In real app: fetch from API using params.testId
+  // Unwrap the async params
+  const { testId } = use(params);
+  const testData = mockTestData; // In real app: fetch from API using testId
 
   const handleStartTest = async () => {
     setIsStarting(true);
     setError(null);
 
     try {
-      const response = await fetch(`/api/tests/${params.testId}/start`, {
+      const response = await fetch(`/api/tests/${testId}/start`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -91,7 +93,7 @@ export default function TestIntroPage({ params }: { params: { testId: string } }
       }
 
       const { sessionId } = await response.json();
-      router.push(`/tests/${params.testId}/take/${sessionId}`);
+      router.push(`/tests/${testId}/take/${sessionId}`);
 
     } catch (error) {
       console.error('Error starting test:', error);

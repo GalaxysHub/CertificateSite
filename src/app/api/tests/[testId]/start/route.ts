@@ -5,12 +5,12 @@ import { startTestSession } from '@/lib/test-session';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { testId: string } }
+  { params }: { params: Promise<{ testId: string }> }
 ) {
   try {
     // Get user session (optional for anonymous users)
     const session = await getServerSession(authOptions);
-    const testId = params.testId;
+    const { testId } = await params;
 
     // Start new test session (with or without user ID)
     const { sessionId, testSession } = await startTestSession(
