@@ -74,11 +74,6 @@ export default function TestIntroPage({ params }: { params: { testId: string } }
   const testData = mockTestData; // In real app: fetch from API using params.testId
 
   const handleStartTest = async () => {
-    if (status !== 'authenticated') {
-      router.push('/auth/signin?callbackUrl=' + encodeURIComponent(window.location.pathname));
-      return;
-    }
-
     setIsStarting(true);
     setError(null);
 

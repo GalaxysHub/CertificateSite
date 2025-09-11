@@ -8,21 +8,13 @@ export async function POST(
   { params }: { params: { testId: string } }
 ) {
   try {
-    // Get user session
+    // Get user session (optional for anonymous users)
     const session = await getServerSession(authOptions);
-    
-    if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: 'Authentication required' },
-        { status: 401 }
-      );
-    }
-
     const testId = params.testId;
 
-    // Start new test session
+    // Start new test session (with or without user ID)
     const { sessionId, testSession } = await startTestSession(
-      session.user.id,
+      session?.user?.id || null, // Allow null for anonymous users
       testId
     );
 

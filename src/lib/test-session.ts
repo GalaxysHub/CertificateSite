@@ -9,7 +9,7 @@ const testSessions = new Map<string, TestSession>();
  * Creates a new test session for a user
  */
 export async function startTestSession(
-  userId: string,
+  userId: string | null,
   testId: string
 ): Promise<{ sessionId: string; testSession: TestSession }> {
   // Fetch test with questions

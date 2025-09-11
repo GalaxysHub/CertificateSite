@@ -322,15 +322,8 @@ export default function TestTakePage({ params }: TestTakePageProps) {
 
   // Initialize session on load
   useEffect(() => {
-    if (status === 'loading') {return;}
-    
-    if (status === 'unauthenticated') {
-      router.push('/auth/signin?callbackUrl=' + encodeURIComponent(window.location.pathname));
-      return;
-    }
-    
     loadTestSession();
-  }, [status, loadTestSession, router]);
+  }, [loadTestSession]);
 
   // Prevent browser back/refresh without confirmation
   useEffect(() => {

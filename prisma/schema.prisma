@@ -112,8 +112,8 @@ model TestAttempt {
   id          String   @id @default(cuid())
   testId      String
   test        Test     @relation(fields: [testId], references: [id])
-  userId      String
-  user        User     @relation(fields: [userId], references: [id])
+  userId      String?  // Made optional for anonymous users
+  user        User?    @relation(fields: [userId], references: [id])
   answers     Json     // Store user answers
   score       Float
   totalPoints Int
@@ -126,8 +126,8 @@ model TestAttempt {
 
 model Certificate {
   id                String   @id @default(cuid())
-  userId            String
-  user              User     @relation(fields: [userId], references: [id])
+  userId            String?  // Made optional for anonymous users
+  user              User?    @relation(fields: [userId], references: [id])
   testAttemptId     String?  @unique // Link to specific test attempt
   testAttempt       TestAttempt? @relation(fields: [testAttemptId], references: [id])
   testId            String?  // Optional, for test-based certificates
