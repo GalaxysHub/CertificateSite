@@ -31,18 +31,21 @@ export async function startTestSession(
     throw new Error('Test is not available');
   }
 
-  // Create test attempt record
-  const attempt = await db.testAttempt.create({
-    data: {
-      testId,
-      userId,
-      answers: {},
-      score: 0,
-      totalPoints: test.questions.reduce((sum, q) => sum + q.points, 0),
-      passed: false,
-      startedAt: new Date(),
-    }
-  });
+  // Create test attempt record (skip for anonymous users until schema is updated)
+  let attempt = null;
+  if (userId) {
+    attempt = await db.testAttempt.create({
+      data: {
+        testId,
+        userId,
+        answers: {},
+        score: 0,
+        totalPoints: test.questions.reduce((sum, q) => sum + q.points, 0),
+        passed: false,
+        startedAt: new Date(),
+      }
+    });
+  }
 
   // Convert questions to TestQuestion format
   const testQuestions: TestQuestion[] = test.questions.map(q => ({
@@ -60,7 +63,8 @@ export async function startTestSession(
     answers: {},
   };
 
-  const sessionId = attempt.id;
+  // Create session ID (use attempt ID for logged-in users, generate random for anonymous)
+  const sessionId = attempt?.id || `anon_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   testSessions.set(sessionId, testSession);
 
   return { sessionId, testSession };
