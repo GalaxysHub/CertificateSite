@@ -80,7 +80,7 @@ export function SignUpForm() {
     }
   };
 
-  const handleSocialSignIn = async (provider: "google" | "github") => {
+  const handleSocialSignIn = async (provider: "google") => {
     setIsLoading(true);
     try {
       await signIn(provider, { callbackUrl: "/dashboard" });
@@ -207,20 +207,14 @@ export function SignUpForm() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="w-full">
           <Button
             variant="outline"
             onClick={() => handleSocialSignIn("google")}
             disabled={isLoading}
+            className="w-full"
           >
-            Google
-          </Button>
-          <Button
-            variant="outline"
-            onClick={() => handleSocialSignIn("github")}
-            disabled={isLoading}
-          >
-            GitHub
+            Sign up with Google
           </Button>
         </div>
 

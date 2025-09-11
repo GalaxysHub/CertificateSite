@@ -134,20 +134,14 @@ export function SignInForm() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="w-full">
           <Button
             variant="outline"
             onClick={() => handleSocialSignIn("google")}
             disabled={isLoading}
+            className="w-full"
           >
-            Google
-          </Button>
-          <Button
-            variant="outline"
-            onClick={() => handleSocialSignIn("github")}
-            disabled={isLoading}
-          >
-            GitHub
+            Sign in with Google
           </Button>
         </div>
 
