@@ -50,13 +50,14 @@ interface TestProgress {
 }
 
 interface TestTakePageProps {
-  params: {
+  params: Promise<{
     testId: string;
     sessionId: string;
-  };
+  }>;
 }
 
 export default function TestTakePage({ params }: TestTakePageProps) {
+  const { testId, sessionId } = use(params);
   const router = useRouter();
   const { data: session, status } = useSession();
   const [isLoading, setIsLoading] = useState(true);
@@ -117,7 +118,7 @@ export default function TestTakePage({ params }: TestTakePageProps) {
   const loadTestSession = useCallback(async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(`/api/tests/sessions/${params.sessionId}`);
+      const response = await fetch(`/api/tests/sessions/${sessionId}`);
       
       if (!response.ok) {
         const errorData = await response.json();
@@ -148,14 +149,14 @@ export default function TestTakePage({ params }: TestTakePageProps) {
     } finally {
       setIsLoading(false);
     }
-  }, [params.sessionId, setValue]);
+  }, [sessionId, setValue]);
 
   // Save answer
   const saveAnswer = useCallback(async (questionId: string, answer: string) => {
     try {
       setIsSaving(true);
       
-      const response = await fetch(`/api/tests/sessions/${params.sessionId}`, {
+      const response = await fetch(`/api/tests/sessions/${sessionId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -184,12 +185,12 @@ export default function TestTakePage({ params }: TestTakePageProps) {
     } finally {
       setIsSaving(false);
     }
-  }, [params.sessionId]);
+  }, [sessionId]);
 
   // Navigate to question
   const navigateToQuestion = useCallback(async (action: 'next' | 'previous' | 'goto', questionIndex?: number) => {
     try {
-      const response = await fetch(`/api/tests/sessions/${params.sessionId}`, {
+      const response = await fetch(`/api/tests/sessions/${sessionId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -218,7 +219,7 @@ export default function TestTakePage({ params }: TestTakePageProps) {
     } catch (error) {
       console.error('Error navigating:', error);
     }
-  }, [params.sessionId]);
+  }, [sessionId]);
 
   // Handle answer selection
   const handleAnswerSelect = (answer: string) => {
@@ -271,7 +272,7 @@ export default function TestTakePage({ params }: TestTakePageProps) {
     try {
       setIsSubmitting(true);
       
-      const response = await fetch(`/api/tests/sessions/${params.sessionId}/submit`, {
+      const response = await fetch(`/api/tests/sessions/${sessionId}/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -287,7 +288,7 @@ export default function TestTakePage({ params }: TestTakePageProps) {
       const data = await response.json();
       
       // Redirect to results page
-      router.push(`/tests/${params.testId}/results/${data.result.attemptId}`);
+      router.push(`/tests/${testId}/results/${data.result.attemptId}`);
       
     } catch (error) {
       console.error('Error submitting test:', error);
@@ -295,7 +296,7 @@ export default function TestTakePage({ params }: TestTakePageProps) {
     } finally {
       setIsSubmitting(false);
     }
-  }, [params.sessionId, params.testId, router]);
+  }, [sessionId, testId, router]);
 
   // Handle leave test
   const handleLeaveTest = () => {
@@ -314,7 +315,7 @@ export default function TestTakePage({ params }: TestTakePageProps) {
     if (type === 'submit' || type === 'timeout') {
       await submitTest(type === 'timeout');
     } else if (type === 'leave') {
-      router.push(`/tests/${params.testId}`);
+      router.push(`/tests/${testId}`);
     }
     
     setConfirmationModal({ ...confirmationModal, isOpen: false });
@@ -365,7 +366,7 @@ export default function TestTakePage({ params }: TestTakePageProps) {
             <AlertTriangle className="w-16 h-16 text-red-500 mx-auto mb-4" />
             <h2 className="text-xl font-semibold text-gray-900 mb-2">Error</h2>
             <p className="text-gray-600 mb-4">{error}</p>
-            <Button onClick={() => router.push(`/tests/${params.testId}`)}>
+            <Button onClick={() => router.push(`/tests/${testId}`)}>
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Test
             </Button>
@@ -383,7 +384,7 @@ export default function TestTakePage({ params }: TestTakePageProps) {
             <AlertTriangle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
             <h2 className="text-xl font-semibold text-gray-900 mb-2">Session Not Found</h2>
             <p className="text-gray-600 mb-4">The test session could not be loaded.</p>
-            <Button onClick={() => router.push(`/tests/${params.testId}`)}>
+            <Button onClick={() => router.push(`/tests/${testId}`)}>
               Start New Test
             </Button>
           </div>

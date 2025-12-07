@@ -13,7 +13,7 @@ import {
 // Get current test session state
 export async function GET(
   request: NextRequest,
-  { params }: { params: { sessionId: string } }
+  { params }: { params: Promise<{ sessionId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -25,7 +25,7 @@ export async function GET(
       );
     }
 
-    const sessionId = params.sessionId;
+    const { sessionId } = await params;
 
     // Try to get session from memory or resume from database
     let testSession = getTestSession(sessionId);
@@ -77,7 +77,7 @@ export async function GET(
 // Update test session with answer
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { sessionId: string } }
+  { params }: { params: Promise<{ sessionId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -89,7 +89,7 @@ export async function PATCH(
       );
     }
 
-    const sessionId = params.sessionId;
+    const { sessionId } = await params;
     const body = await request.json();
     
     const { questionId, answer, action } = body;

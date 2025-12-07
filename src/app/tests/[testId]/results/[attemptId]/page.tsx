@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { motion } from 'framer-motion';
@@ -57,8 +57,9 @@ interface TestAttemptResult {
 export default function TestResultsPage({ 
   params 
 }: { 
-  params: { testId: string; attemptId: string } 
+  params: Promise<{ testId: string; attemptId: string }> 
 }) {
+  const { testId, attemptId } = use(params);
   const router = useRouter();
   const { data: session, status } = useSession();
   const [isLoading, setIsLoading] = useState(true);
@@ -81,7 +82,7 @@ export default function TestResultsPage({
         
         // Mock data - in real app would fetch from API
         const mockResult: TestAttemptResult = {
-          id: params.attemptId,
+          id: attemptId,
           result: {
             score: 42,
             totalPoints: 50,
@@ -93,7 +94,7 @@ export default function TestResultsPage({
             proficiencyLevel: 'Proficient'
           },
           test: {
-            id: params.testId,
+            id: testId,
             title: 'JavaScript Fundamentals Certification',
             category: 'Programming',
             passingScore: 70
@@ -117,7 +118,7 @@ export default function TestResultsPage({
     };
 
     loadTestResults();
-  }, [status, params, router, session]);
+  }, [status, testId, attemptId, router, session]);
 
   const handleDownloadCertificate = async () => {
     if (!testResult?.certificateId) {return;}
@@ -135,7 +136,7 @@ export default function TestResultsPage({
   };
 
   const handleRetakeTest = () => {
-    router.push(`/tests/${params.testId}`);
+    router.push(`/tests/${testId}`);
   };
 
   const handleShareResult = async () => {

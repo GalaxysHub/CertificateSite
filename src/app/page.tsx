@@ -40,20 +40,20 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
-              <Star className="w-4 h-4 mr-2" />
-              Trusted by 10,000+ professionals worldwide
+              <Globe className="w-4 h-4 mr-2" />
+              Trusted by 50,000+ language learners worldwide
             </div>
             
             <h1 className="mb-6 text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
-              Certify Your
+              Master Any
               <span className="block bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                Expertise
+                Language
               </span>
             </h1>
             
             <p className="mx-auto mb-8 max-w-3xl text-xl text-gray-600 leading-relaxed">
-              The world's leading platform for professional certification tests. 
-              Create, take, and manage certification exams with instant certificate generation.
+              The world's leading platform for language proficiency certification. 
+              Test your skills with CEFR, HSK, and JLPT standardized assessments and earn internationally recognized certificates.
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
@@ -71,20 +71,20 @@ export default function Home() {
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-gray-900">10K+</div>
-                <div className="text-sm text-gray-600">Certified Users</div>
+                <div className="text-2xl md:text-3xl font-bold text-gray-900">50K+</div>
+                <div className="text-sm text-gray-600">Language Learners</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-gray-900">500+</div>
-                <div className="text-sm text-gray-600">Test Categories</div>
+                <div className="text-2xl md:text-3xl font-bold text-gray-900">8</div>
+                <div className="text-sm text-gray-600">Languages Available</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-gray-900">95%</div>
-                <div className="text-sm text-gray-600">Success Rate</div>
+                <div className="text-2xl md:text-3xl font-bold text-gray-900">98%</div>
+                <div className="text-sm text-gray-600">Accuracy Rate</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-gray-900">24/7</div>
-                <div className="text-sm text-gray-600">Support</div>
+                <div className="text-2xl md:text-3xl font-bold text-gray-900">CEFR</div>
+                <div className="text-sm text-gray-600">Certified Standards</div>
               </div>
             </div>
           </motion.div>

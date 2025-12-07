@@ -7,7 +7,7 @@ import { CertificateGenerator } from '@/lib/certificate-generator';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { sessionId: string } }
+  { params }: { params: Promise<{ sessionId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -19,7 +19,7 @@ export async function POST(
       );
     }
 
-    const sessionId = params.sessionId;
+    const { sessionId } = await params;
     const body = await request.json();
     const { forceSubmit = false } = body;
 
